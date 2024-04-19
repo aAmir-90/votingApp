@@ -1,10 +1,22 @@
-const express = require( 'express');
+const express = require('express');
+
 const app = express();
 
+const db = require('./db.js');
 
-app.get('/', (req, res)=>{
-    res.send('I am new here')
-})
-app.listen(5000, (req, res)=>{
-    console.log('Listening on port: 5000')
+require('dotenv').config();
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json())
+
+const PORT = process.env.PORT || 5000;
+
+const userRoutes = require('./routes/userRoutes');
+const candidateRoutes = require('./routes/candidateRoutes');
+
+app.use('/user', userRoutes);
+app.use('/candidate', candidateRoutes);
+
+app.listen(PORT, ()=>{
+    console.log("Listening on port: 5000")
 });
