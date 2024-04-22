@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('./../models/user');
+const User = require('./../models/user.js');
 const {jwtAuthMiddleware, generateToken} = require('./../jwt');
 
 // POST route to add a person
